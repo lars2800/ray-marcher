@@ -1,4 +1,7 @@
 import math
+import os
+os.system("pip install termcolor")
+from termcolor import colored
 
 class vector:
     def __init__(self,x1,y1,z1,x2,y2,z2):
@@ -15,6 +18,7 @@ class vector:
         return [((self.x2-self.x1)/length),((self.y2-self.y1))/length,((self.z2-self.z1))/length]
     def step(self,step):
         [self.normalize()[0]*step,self.normalize()[1]*step,self.normalize()[2]*step]
+    
         
 
 class point:
@@ -29,6 +33,10 @@ class nearest:
     def circle(point,centrum,radius):
         return nearest.point(point,centrum)-radius
 
-CentrumPoint = point(0,0,0)
-VecPoint = point(-10,0,0)
-print(nearest.circle(VecPoint,CentrumPoint,1))
+os.system("cls")
+print("")
+print(colored("|---------------------------------|","green"))
+print(colored("|  succesfully loaded mala maths  |","green"))
+print(colored("|     made by lars! have fun!     |","green"))
+print(colored("|---------------------------------|","green"))
+print("")
