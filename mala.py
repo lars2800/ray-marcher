@@ -1,6 +1,6 @@
 import math
 import os
-os.system("pip install PIL")
+os.system("python3 -m pip install --upgrade Pillow")
 from PIL import Image
 from time import sleep
 os.system("pip install termcolor")
