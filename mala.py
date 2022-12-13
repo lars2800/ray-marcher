@@ -1,5 +1,6 @@
 import math
 import os
+os.system("pip install PIL")
 from PIL import Image
 from time import sleep
 os.system("pip install termcolor")
@@ -51,19 +52,19 @@ def calcurateray(vector,objects):
     step = 1
 
 
-    while distance != 0:
-        distance,object = calcurate(point(vector.x1+(vector.normalize()[0])*step,vector.y1+(vector.normalize()[1])*step,vector.z1+(vector.normalize()[2])*step),objects)
-        step += distance
+    while step != 0:
+        step,object = calcurate(point(vector.x1+(vector.normalize()[0])*distance,vector.y1+(vector.normalize()[1])*distance,vector.z1+(vector.normalize()[2])*distance),objects)
+        distance += step
 
-        if step > 1000:
+        if distance > 1000:
             
             return ["None"]
         
-        if distance < 1:
-            fp = point(vector.x1+(vector.normalize()[0])*step,vector.y1+(vector.normalize()[1])*step,vector.z1+(vector.normalize()[2])*step)
+        if step < 1:
+            fp = point(vector.x1+(vector.normalize()[0])*distance,vector.y1+(vector.normalize()[1])*distance,vector.z1+(vector.normalize()[2])*distance)
             return [object[0],[fp.x,fp.y,fp.z]]
     
-    fp = point(vector.x1+(vector.normalize()[0])*step,vector.y1+(vector.normalize()[1])*step,vector.z1+(vector.normalize()[2])*step)
+    fp = point(vector.x1+(vector.normalize()[0])*distance,vector.y1+(vector.normalize()[1])*distance,vector.z1+(vector.normalize()[2])*distance)
     return [object[0],[fp.x,fp.y,fp.z]]
 
  
