@@ -1,5 +1,7 @@
 import math
 import os
+from PIL import Image
+from time import sleep
 os.system("pip install termcolor")
 from termcolor import colored
 
@@ -47,24 +49,40 @@ def calcurate(point,Objects):
 def calcurateray(vector,objects):
     distance = 1
     step = 1
+
+
     while distance != 0:
         distance,object = calcurate(point(vector.x1+(vector.normalize()[0])*step,vector.y1+(vector.normalize()[1])*step,vector.z1+(vector.normalize()[2])*step),objects)
         step += distance
-        if distance > 1000:
-            object = [None]
-            break
-    if object[0] == None:
-        print("Found nothing whit vector: x1: "+str(vector.x1)+" y1: "+str(vector.y1)+" z1: "+str(vector.z1)+" | x2: "+str(vector.x2)+" y2: "+str(vector.y2)+" z2: "+str(vector.z2))
-        return
-        
-    fp = point(vector.x1+(vector.normalize()[0])*step,vector.y1+(vector.normalize()[1])*step,vector.z1+(vector.normalize()[2])*step)
 
-    print("Found "+str(object[0])+ " At: x: "+str(fp.x)+" y: "+str(fp.y)+" z: "+str(fp.z))
+        if step > 1000:
+            
+            return ["None"]
+        
+        if distance < 1:
+            fp = point(vector.x1+(vector.normalize()[0])*step,vector.y1+(vector.normalize()[1])*step,vector.z1+(vector.normalize()[2])*step)
+            return [object[0],[fp.x,fp.y,fp.z]]
+    
+    fp = point(vector.x1+(vector.normalize()[0])*step,vector.y1+(vector.normalize()[1])*step,vector.z1+(vector.normalize()[2])*step)
+    return [object[0],[fp.x,fp.y,fp.z]]
+
+ 
+
+class CreateImage:
+    def __init__(self,width,height) -> None:
+        self.img = Image.new('RGB', (width, height), color = (102, 204, 255))
+        self.width = width
+        self.height = height
+    
+    def set_pixel(self,x,y,color):
+        self.img.putpixel([x,y],color)
+    def save(self):
+        self.img.save('image.png')
 
 os.system("cls")
 print("")
-print(colored("|---------------------------------|","green"))
-print(colored("|  succesfully loaded mala maths  |","green"))
-print(colored("|     made by lars! have fun!     |","green"))
-print(colored("|---------------------------------|","green"))
+print(colored("|---------------------------------|","red"))
+print(colored("|  succesfully loaded mala maths  |","red"))
+print(colored("|     made by lars! have fun!     |","red"))
+print(colored("|---------------------------------|","red"))
 print("")
